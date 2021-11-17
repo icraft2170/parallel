@@ -12,5 +12,6 @@ public class ThreadExtendsThread extends Thread{
     public void run() {
         // Thread 의 getName()출력
         System.out.println(getName());
+
     }
 }

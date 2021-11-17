@@ -6,7 +6,6 @@ public class ThreadTest {
 
     @Test
     void threadTest(){
-
         // Thread 를 상속받은 클래스의 인스턴스 생성
         ThreadExtendsThread thread = new ThreadExtendsThread();
 
@@ -14,24 +13,28 @@ public class ThreadTest {
         Runnable runnable = new ThreadImplementRunnable();
         Thread runnableThread = new Thread(runnable);
 
-
-
         // 이름이 변경
         thread.setName(" Thread 를 상속받은 ThreadExtendsThread ");
         thread.start();
+        /**
+         * Thread.start() -> 실행 대기상태에 있다가 자신이 차례가 되면 실행한다. 실행순서는 (OS의 스케쥴러가 결정한다.)
+         * 한 번 종료된 쓰레드는 다시 실행할 수 없다. 하나의 쓰레드의 start()는 단 한 번만 호출될 수 있다. 두 번 이상 실행시
+         * IllegalThreadStateException 발생
+         */
 
         runnableThread.setName(" Runnable 을 구현한 ThreadImplementRunnable ");
-        // Todo: public synchronized void start() <- Thread.start()의 구현부 synchronized의 의미를 추가로 정리하자
         runnableThread.start();
         // Todo: 별도의 Runnable 구현체라면 실행되지 않는다. 이유는 ?...
-        runnableThread.run();
+        //runnableThread.run();
+
+
 
         // 'Runnable'은 Functional Interface
         Thread runnableThreadWithLambda = new Thread(() -> {
             System.out.println(" 람다와 함께한 Thread ");
         });
         runnableThreadWithLambda.start();
-        // Todo: 이게 또 람다로는 정상 실행이 된다?? 이유 알아보자...
+        // Todo: 이게 또 람다로는 정상 실행이 된다?? 이유 알아보자... ( 순서문제는 아님. 바꿔도 실행됨 )
         runnableThreadWithLambda.run();
 
 
@@ -80,4 +83,20 @@ public class ThreadTest {
  *  > 멀티쓰레딩에 생길 수 있는 문제점
  *  > 여러 쓰레드가 같은 프로세스 내에서 자원을 공유하면서 작업을 하기 때문에 발생할 수 있는 동기화(synchronization), 교착상태(deadlock)와 같은
  *  > 문제들을 고려해서 신중히 프로그래밍 해야한다.
+ */
+
+
+/**
+ *
+ *  start() 와 run()
+ *
+ *  - run() 을 호출하게 되면 현재 콜 스택 위에 그대로 실행된다. Thread가 아니라 메소드를 호출하는 것.
+ *  - start() 는 호출스택(Call Stack)을 생성한 다음에 run()을 호출해서. 생성된 호출스택에 run()이 첫 번째로 올라가게 한다.
+ *      - 모든 쓰레드는 독립적인 작업을 위해 자신만의 호출스택을 필요로 하기 때문에 start()로 실행해야 한다.
+ *
+ *  - 프로세스는 실행 중인 사용자 쓰레드가 하나도 없을 때 종료된다.
+ *  > 쓰레드의 종류
+ *      1. 사용자 쓰레드(user thread)
+ *      2. 데몬 쓰레드(daemon thread)
+ *
  */
