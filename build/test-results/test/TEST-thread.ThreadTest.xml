@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="thread.ThreadTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-11-16T16:28:51" hostname="sonhyeonhoui-MacBookAir.local" time="0.034">
+  <properties/>
+  <testcase name="threadTest()" classname="thread.ThreadTest" time="0.034"/>
+  <system-out><![CDATA[ Thread 를 상속받은 ThreadExtendsThread 
+ Runnable 을 구현한 ThreadImplementRunnable 
+ 람다와 함께한 Thread 
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

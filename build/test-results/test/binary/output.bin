@@ -1,0 +1,3 @@
+. Thread 를 상속받은 ThreadExtendsThread 
+1 Runnable 을 구현한 ThreadImplementRunnable 
+ 람다와 함께한 Thread 
